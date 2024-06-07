@@ -1,0 +1,32 @@
+<header class="header">
+  <a class="logo"> <i class="fa fa-shopping-basket"></i>Amazon </a>
+
+  <nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#home">Features</a>
+    <a href="#home">Products</a>
+    <a href="#home">reviews</a>
+  </nav>
+
+  <div class="icons">
+    <i class="fa fa-shopping-cart"></i>
+    <i class="fa fa-user" [mat-menu-trigger-for]="menu"></i>
+  </div>
+</header>
+
+<mat-menu #menu="matMenu">
+  <button class="menu-item" mat-menu-item (click)="userSignUp()">
+    <mat-icon>account_circle </mat-icon>
+    <span class="size">Sign Up</span>
+  </button>
+
+  <button class="menu-item" mat-menu-item>
+    <mat-icon>login</mat-icon>
+    <span class="size">Login</span>
+  </button>
+
+  <button class="menu-item" mat-menu-item>
+    <mat-icon>power_settings_new </mat-icon>
+    <span class="size">Exit</span>
+  </button>
+</mat-menu>

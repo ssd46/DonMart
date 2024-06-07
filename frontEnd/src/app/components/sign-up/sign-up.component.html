@@ -1,0 +1,92 @@
+<mat-toolbar color="myColor">
+  <mat-toolbar-row>
+    <span style="color: #fff">Register</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content>
+  <form [formGroup]="registrationForm">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Username:</mat-label>
+        <input matInput type="text" formControlName="username" />
+        <mat-error
+          *ngIf="
+            registrationForm.controls.username.touched &&
+            registrationForm.controls.username.invalid
+          "
+        >
+          <span *ngIf="registrationForm.controls.username.errors?.required"
+            >This is Mandatory</span
+          >
+          <span *ngIf="registrationForm.controls.username.errors?.pattern"
+            >This is invalid</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password:</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error
+          *ngIf="
+            registrationForm.controls.password.touched &&
+            registrationForm.controls.password.invalid
+          "
+        >
+          <span *ngIf="registrationForm.controls.password.errors?.required"
+            >This is Mandatory
+          </span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>email:</mat-label>
+        <input matInput type="text" formControlName="email" />
+        <mat-error
+          *ngIf="
+            registrationForm.controls.email.touched &&
+            registrationForm.controls.email.invalid
+          "
+        >
+          <span *ngIf="registrationForm.controls.email.errors?.required"
+            >This is Mandatory</span
+          >
+          <span *ngIf="registrationForm.controls.email.errors?.pattern"
+            >This is invalid</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Number:</mat-label>
+        <input matInput type="text" formControlName="cnumber" />
+        <mat-error
+          *ngIf="
+            registrationForm.controls.cnumber.touched &&
+            registrationForm.controls.cnumber.invalid
+          "
+        >
+          <span *ngIf="registrationForm.controls.cnumber.errors?.required"
+            >This is Mandatory</span
+          >
+          <span *ngIf="registrationForm.controls.cnumber.errors?.pattern"
+            >This is invalid</span
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="warn"
+    [disabled]="!(registrationForm.valid && registrationForm.dirty)"
+    (click)="onRegister()"
+  >
+    Register
+  </button>
+  <button mat-raised-button color="dialog-close" mat-dialog-close>Close</button>
+</mat-dialog-actions>
