@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { UserService } from 'src/app/services/user.service';
 import { globalProperties } from 'src/app/shared/globalProperties';
 
@@ -13,11 +15,14 @@ import { globalProperties } from 'src/app/shared/globalProperties';
 export class SignUpComponent implements OnInit{
 
 registrationForm:any=FormGroup
+responseMsg:string
 
 constructor(private _formBuilder:FormBuilder,
   private _ngxuiloader:NgxUiLoaderService,
   private _userService:UserService,
-  private _dialogRef:MatDialogRef<SignUpComponent>
+  private _dialogRef:MatDialogRef<SignUpComponent>,
+  private _snackBarService:SnackBarService,
+  private _router:Router
 ){}
 
 ngOnInit(): void {
@@ -42,7 +47,19 @@ onRegister(){
   this._userService.signup(data).subscribe((res)=>{
     this._ngxuiloader.stop()
     this._dialogRef.close()
-    console.log("res message",res.message)
+    this.responseMsg=res.message
+    this._snackBarService.openSnackBar(this.responseMsg,'')
+    this._router.navigate(['/'])
+
+  },(err)=>{
+    this._ngxuiloader.stop()
+    if(err.error?.message){
+      this.responseMsg=err.error?.message
+    }
+    else{
+      this.responseMsg=globalProperties.genericError
+    }
+    this._snackBarService.openSnackBar(this.responseMsg,globalProperties.error)
 
   })
 

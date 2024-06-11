@@ -26,3 +26,17 @@ scroll-padding-top: 7rem;
 body{
 background: #eee;
 }
+
+.mat-mdc-snack-bar-container{
+    &.error-snackbar{
+        --mdc-snackbar-container-color:red;
+        --mdc-snackbar-supporting-text-color:#fff;
+    }
+}
+
+.mat-mdc-snack-bar-container{
+    &.succes-snackbar{
+        --mdc-snackbar-container-color:green;
+        --mdc-snackbar-supporting-text-color:#fff;
+    }
+}
